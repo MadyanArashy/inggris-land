@@ -1,15 +1,16 @@
 import { Link } from "react-router-dom";
+import INFO from "../data/info.ts"
 
 const Home = () => {
   return (
     <>
       {/* Hero Section */}
-      <div className="relative w-full pt-48 lg:pt-0 lg:h-screen bg-cover bg-no-repeat bg-center bg-[url('/home-cover-1.png')]">
+      <div className="relative w-full pt-48 lg:pt-0 lg:h-110 bg-cover bg-no-repeat bg-position-[center_30%] bg-[url('/home-cover-1.png')] mb-12">
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/50 z-10"></div>
 
         {/* Text */}
-        <div className="absolute lg:top-1/3 lg:left-10 bg-white px-8 py-6 z-20 rounded-tl-3xl rounded-br-3xl flex flex-col gap-4 lg:w-1/2 shadow-lg">
+        <div className="absolute lg:top-56 lg:left-4 bg-white px-8 py-4 z-20 lg:rounded-tl-3xl lg:rounded-br-3xl flex flex-col gap-4 lg:w-md shadow-lg">
           <h1 className="text-2xl md:text-4xl font-bold text-center text-primary-900">
             Helping you learn English, step-by-step
           </h1>
@@ -18,8 +19,7 @@ const Home = () => {
             Want to improve your English? Feel like the other options just don't fit your style?
             Try out{" "}
             <strong className="text-primary-500 font-bold">InggrisLand</strong>,
-            a free English-learning app designed to help out people just like you!
-            {" "}
+            a free English-learning app designed to help out people just like you!{" "}
             <Link to="/explore" className="text-primary-500 hover:underline">
               Click here to try!
             </Link>
@@ -27,44 +27,8 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Description */}
-      <p className="text-xl mt-12 max-w-2xl mx-auto text-center text-primary-900 leading-relaxed">
-        Everything you find here has been specially created by the British Council, the world's English teaching experts.
-      </p>
-
       {/* Reusable Section Component */}
-      {[
-        {
-          title: "Skills",
-          image: "/home-skills.png",
-          content: [
-            "Practise your listening, reading, writing and speaking and learn useful language to use at work or to communicate effectively with friends.",
-            "Audio and video to practise your listening and speaking skills.",
-            "Model texts for all types of writing tasks.",
-            "Work on your reading skills to read more quickly and understand more."
-          ],
-        },
-        {
-          title: "Grammar",
-          image: "/home-grammar.png",
-          content: [
-            "Revise and practise your grammar to improve your language level and increase your confidence.",
-            "Clear and simple grammar explanations to help you revise and practise different grammar points.",
-            "Online exercises to help you check your understanding of the grammar points.",
-            "Use the grammar reference for further practice and more detailed explanations."
-          ],
-        },
-        {
-          title: "Vocabulary",
-          image: "/home-vocabulary.png",
-          content: [
-            "Learn new words and improve your language level to be able to communicate in English effectively.",
-            "Online exercises to help you learn the meaning, pronunciation and spelling of new words.",
-            "Learn new words connected to a wide range of different topics.",
-            "Play our word games and have fun as you improve your vocabulary."
-          ],
-        }
-      ].map((section, index) => (
+      {INFO.home.map((section, index) => (
         <div key={index} className="relative w-full py-12">
           {/* Background Layer */}
           <div className="absolute inset-0 bg-primary-500 opacity-50"></div>
@@ -93,7 +57,7 @@ const Home = () => {
                   <li key={i}>{item}</li>
                 ))}
               </ul>
-              <button className="bg-primary-500 text-white rounded-full px-6 py-2 text-base font-semibold transition-transform transform hover:scale-105 hover:bg-primary-400 shadow-md hover:shadow-lg hover:shadow-primary-500 hover:cursor-pointer">
+              <button className="bg-primary-500 text-white rounded-full px-6 py-2 text-base font-semibold transition-transform not-motion-reduce:transform hover:scale-105 hover:bg-primary-400 shadow-md hover:shadow-lg hover:shadow-primary-500 hover:cursor-pointer">
                 Start learning
               </button>
             </div>

@@ -2,7 +2,7 @@ import bcrypt from "bcrypt";
 import User from "../../models/User.js";
 
 export const register = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { username, email, password } = req.body;
 
   try {
     // Check if user already exists
@@ -13,9 +13,13 @@ export const register = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create new user
-    const user = await User.create({ name, email, password: hashedPassword });
+    const user = await User.create({ username, email, password: hashedPassword });
 
-    res.status(201).json({ message: "User registered successfully", user: { id: user.id, name: user.name, email: user.email } });
+    res.status(201).json({
+      message: "User registered successfully",
+      user: { id: user.id, username: user.username, email: user.email }
+    });
+    
   } catch (err) {
     res.status(500).json({ message: "Registration failed", error: err.message });
   }
@@ -36,7 +40,7 @@ export const login = async (req, res) => {
     // Store user info in session
     req.session.user = {
       id: user.id,
-      name: user.name,
+      name: user.username,
       email: user.email,
     };
 
