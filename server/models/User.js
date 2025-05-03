@@ -4,7 +4,7 @@ import db from "../config/Database.js";
 const {DataTypes} = Sequelize;
 
 const User = db.define('users', {
-  name: DataTypes.STRING,
+  username: DataTypes.STRING,
   email: DataTypes.STRING,
   password: DataTypes.STRING,
 }, {
