@@ -30,6 +30,79 @@ const INFO = {
         "Play our word games and have fun as you improve your vocabulary."
       ],
     }
+  ],
+
+  Explore: [
+    {
+      level: 'Basic',
+      title: 'Uses of like',
+      description: 'This activity helps you to practise using like in different sentences.',
+      proficiency: 'A1-A2',
+      duration: '0-5 minutes',
+      imageUrl: '/explore.png',
+    },
+    {
+      status: 'NEW',
+      level: 'Basic',
+      title: 'I love sports',
+      description: 'This activity helps you practice using words to do with time and place.',
+      proficiency: 'A1-A2',
+      duration: '5-10 minutes',
+      imageUrl: '/explore.png',
+    },
+    {
+      level: 'Independent',
+      title: 'Family holiday',
+      description: 'Add some prepositions to a story about going on a family holiday.',
+      proficiency: 'B1-B2',
+      duration: '0-5 minutes',
+      imageUrl: '/explore.png',
+    },
+    {
+      status: 'NEW',
+      level: 'Independent',
+      title: 'What a great idea!',
+      description: 'Learn about exclamative clauses',
+      proficiency: 'B1-B2',
+      duration: '0-5 minutes',
+      imageUrl: '/explore.png',
+    },
+    {
+      status: 'NEW',
+      level: 'Independent',
+      title: 'See and know',
+      description: 'Learn about how to use see in spoken english',
+      proficiency: 'B1-B2',
+      duration: '0-5 minutes',
+      imageUrl: '/explore.png',
+    },
+    {
+      status: 'NEW',
+      level: 'Intermediate',
+      title: 'Using Hyphens Correctly',
+      description: 'Learn the proper ways to use hyphens in compound words and phrases.',
+      proficiency: 'B2-C1',
+      duration: '5-10 minutes',
+      imageUrl: '/explore.png',
+    },
+    {
+      status: 'NEW',
+      level: 'Advanced',
+      title: 'Advanced Synonyms',
+      description: 'Practice understanding and using advanced synonyms in various contexts.',
+      proficiency: 'C1-C2',
+      duration: '5-10 minutes',
+      imageUrl: '/explore.png',
+    },
+    {
+      status: 'NEW',
+      level: 'Intermediate',
+      title: 'Common Idiomatic Phrases',
+      description: 'Learn the meaning and usage of common idiomatic phrases in conversation.',
+      proficiency: 'B2-C1',
+      duration: '10-15 minutes',
+      imageUrl: '/explore.png',
+    },
   ]
 }
 

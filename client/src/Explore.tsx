@@ -1,50 +1,58 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import "./index.css";
+import React from 'react';
+import INFO from "../data/info.ts";
 
-type User = {
-  name: string
-  email: string
-  password: string
-}
+const ActivityCard: React.FC<typeof INFO.Explore[number]> = ({
+  status,
+  level,
+  title,
+  description,
+  proficiency,
+  duration,
+  imageUrl,
+}) => (
+  <div className="relative border border-gray-200 rounded-md overflow-hidden bg-white shadow-sm group transition-shadow hover:shadow-md hover:cursor-pointer">
+    <div className="relative overflow-hidden">
+      <img
+        src={imageUrl}
+        alt={title}
+        className="w-full h-auto block transform scale-100 group-hover:scale-110 transition-transform duration-350 ease-in-out"
+      />
+      {status && (
+        <div className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold py-1 px-2 rounded-md z-10">
+          {status}
+        </div>
+      )}
+    </div>
+    <div className="bg-teal-500 text-white p-4 flex items-center justify-between">
+      <div>
+        <div className="text-sm">{level}</div>
+        <div className="text-lg font-semibold">{title}</div>
+      </div>
+      <div className="text-white text-xl">&gt;</div>
+    </div>
+    <div className="p-4 text-gray-700 text-sm border-b border-gray-200">
+      {description}
+    </div>
+    <div className="p-4 flex items-center justify-between text-gray-500 text-sm">
+      {proficiency && <span>{proficiency}</span>}
+      {duration && <span>{duration}</span>}
+    </div>
+  </div>
+);
 
-const Explore = () => {
-  const [users, setUsers] = useState<User[]>([])
-
-  useEffect(() => {
-    getUsers();
-  }, []);
-
-  const getUsers = async () => {
-    const response = await axios.get("http://localhost:5000/users");
-    setUsers(response.data);
-  };
-
+const Explore: React.FC = () => {
   return (
-    <table className="w-full mx-auto table-fixed">
-      <thead>
-        <tr>
-          <th className="text-center border border-amber-950">Name</th>
-          <th className="text-center border border-amber-950">Email</th>
-          <th className="text-center border border-amber-950">Password</th>
-          <th className="text-center border border-amber-950">Streak</th>
-          <th className="text-center border border-amber-950">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {users.map((user, index) => (
-          <tr key={index}>
-            <td className="border border-amber-950 text-center">{user.name}</td>
-            <td className="border border-amber-950 text-center">{user.email}</td>
-            <td className="border border-amber-950 text-center">{user.password}</td>
-            <td className="border border-amber-950 text-center">0 🔥</td>
-            <td className="border border-amber-950 text-center">
-              <button className="bg-red-500 text-white px-2 py-1 rounded hover:opacity-75 cursor-pointer">Delete</button>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <div>
+      <h1 className="text-3xl font-bold bg-white p-5">Learning English</h1>
+      <div className="font-sans p-5 bg-primary-200">
+        <h2 className="text-xl font-semibold mb-4">We found {INFO.Explore.length} activities for you</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {INFO.Explore.map((activity, index) => (
+            <ActivityCard key={index} {...activity} />
+          ))}
+        </div>
+      </div>
+    </div>
   );
 };
 
