@@ -1,0 +1,32 @@
+GET http://localhost:5000/users
+
+###
+
+GET http://localhost:5000/users/1
+
+###
+
+POST http://localhost:5000/users
+Content-Type: application/json
+
+{
+  "name": "Evelyn Tucni",
+  "email": "evelyn@yahoo.com",
+  "password": "petdog123#"
+}
+
+###
+
+PATCH http://localhost:5000/users/1
+Content-Type: application/json
+
+{
+  "name": "Maverick",
+  "email": "gruyere@gmail.com",
+  "password": "blahblahblah#"
+}
+
+###
+
+DELETE http://localhost:5000/users/6
+Content-Type: application/json
