@@ -13,7 +13,7 @@ return (
   <>
   <Meta />
   <Navbar/>
-  <div className="max-w-screen-lg mx-auto bg-primary-200 h-screen" id="main-content">
+  <div className="max-w-screen-xl mx-auto bg-primary-200 h-screen" id="main-content">
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/explore" element={<Explore />} />
