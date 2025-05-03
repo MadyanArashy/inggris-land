@@ -7,9 +7,53 @@ export default function AuthPage() {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
     const data = Object.fromEntries(form.entries());
+    const email = data.email?.toString().trim();
+    const password = data.password?.toString();
+    const confirm = data['confirm-password']?.toString();
+    const username = data.username?.toString().trim();
+  
+    // Basic validation
+    if (!/\S+@\S+\.\S+/.test(email || '')) {
+      alert("Invalid email format.");
+      return;
+    }
+  
+    if ((password?.length || 0) < 6) {
+      alert("Password must be at least 6 characters.");
+      return;
+    }
+  
+    if (!isLogin) {
+      if (!username) {
+        alert("Username is required.");
+        return;
+      }
+      if (password !== confirm) {
+        alert("Passwords do not match.");
+        return;
+      }
+    }
+  
     console.log(isLogin ? 'Logging in...' : 'Registering...', data);
-    // send data to backend here using fetch/axios
+  
+    // Send data to backend (example)
+    fetch(`http://localhost:5000/auth/${isLogin ? 'login' : 'register'}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+      credentials: "include",
+    })
+      .then(async res => {
+        const response = await res.json();
+        if (!res.ok) throw new Error(response.message || "Request failed");
+        alert("Success!");
+      })
+      .catch(err => {
+        console.error("Auth error:", err);
+        alert(err.message || "Something went wrong.");
+      });
   };
+  
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -62,6 +106,7 @@ export default function AuthPage() {
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           )}
+          <input type="hidden" name="isLogin" value={+ isLogin} />
           <button
             type="submit"
             className="w-full px-4 py-2 font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700"
