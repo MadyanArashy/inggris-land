@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaCircleUser } from "react-icons/fa6";
+import { FaDoorOpen } from "react-icons/fa";
 import { BsCloudCheck } from "react-icons/bs";
 import Notification from "./components/Notification";
 import "./index.css";
+import axios from "axios";
 
 export interface User {
   id?: number;
@@ -45,7 +47,16 @@ const Account = ({ user }: AccountProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    };
+  };
+
+  const logout = async () => {
+    try {
+      const response = await axios.post('http://localhost:5000/logout', {}, { withCredentials: true });
+      if (response) {window.location.href = '/login'};
+    } catch (err) {
+      console.error('Logout error', err);
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -118,18 +129,23 @@ const Account = ({ user }: AccountProps) => {
             onChange={handleChange}
           />
         </div>
-        <button type="submit" className="bg-primary-500 text-white rounded-full px-6 py-2 text-base font-semibold transition-transform not-motion-reduce:transform hover:scale-105 hover:bg-primary-400 cursor-pointer flex gap-2 items-center">
-          <BsCloudCheck size={"1.5rem"} color="white" />
-          Submit!
-        </button>
+        <div className="flex flex-row gap-10">
+          <button type="submit" className="bg-primary-500 text-white rounded-full px-6 py-2 text-base font-semibold transition-transform not-motion-reduce:transform hover:scale-105 hover:bg-primary-400 cursor-pointer flex gap-2 items-center">
+            <BsCloudCheck size={"1.5rem"} color="white" />
+            Submit!
+          </button>
+          <button type="button" onClick={logout} className="text-red-500 font-bold flex flex-row gap-1 items-center cursor-pointer hover:underline">
+            Logout <FaDoorOpen size={24}/>
+          </button>
+        </div>
       </form>
       {
         formStatus == "success" &&
-        <Notification type="success" message="Account successfully updated!"/>
+        <Notification type="success" message="Account successfully updated!" onClose={() => setFormStatus("idle")}/>
       }
       {
         formStatus == "error" &&
-        <Notification type="fail" message="Failure!"/>
+        <Notification type="fail" message="Failure!" onClose={() => setFormStatus("idle")}/>
       }
       {/* <Notification type="alert"/> */}
     </>
