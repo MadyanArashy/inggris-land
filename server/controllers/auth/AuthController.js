@@ -1,6 +1,16 @@
 import bcrypt from "bcrypt";
 import User from "../../models/User.js";
 
+export const getCurrentUser = (req, res) => {
+  // Check if there's a user in the session
+  if (!req.session.user) {
+    return res.status(401).json({ message: "Not logged in" });
+  }
+
+  // Return the user data from session
+  res.json({ user: req.session.user });
+};
+
 export const register = async (req, res) => {
   const { username, email, password } = req.body;
 
@@ -29,18 +39,15 @@ export const login = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    // Find user by email
     const user = await User.findOne({ where: { email } });
     if (!user) return res.status(401).json({ message: "Invalid credentials" });
 
-    // Compare password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(401).json({ message: "Invalid credentials" });
 
-    // Store user info in session
     req.session.user = {
       id: user.id,
-      name: user.username,
+      username: user.username,
       email: user.email,
     };
 
@@ -50,12 +57,6 @@ export const login = async (req, res) => {
   }
 };
 
-export const getCurrentUser = (req, res) => {
-  if (!req.session.user) {
-    return res.status(401).json({ message: "Not logged in" });
-  }
-  res.json({ user: req.session.user });
-};
 
 export const logout = (req, res) => {
   req.session.destroy((err) => {
