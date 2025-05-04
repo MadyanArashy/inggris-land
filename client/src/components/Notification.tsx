@@ -21,7 +21,8 @@ const Notification = ({type, message}: NotificationProps) => {
       logo = <FaSkullCrossbones size={"2rem"} color="red"/>;
       break;
     case "danger":
-      logo = <MdDangerous size={"2rem"} color="red"/>
+      logo = <MdDangerous size={"2rem"} color="red"/>;
+      break;
   }
   if(!message){message = `New ${type} notification`}
 
