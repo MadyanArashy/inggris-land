@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export default function AuthPage() {
+export default function AuthPage({user}: {user?: any}) {
+  const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true);
-
+  if(user) {navigate("/")}
   // Handle form submission (login or register)
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -42,6 +44,7 @@ export default function AuthPage() {
       
   
       alert("Success!");
+      window.location.reload();
     } catch (err) {
       console.error(err);
       alert("Network error");

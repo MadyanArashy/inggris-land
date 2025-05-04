@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import INFO from "../data/info.ts";
 
-const ActivityCard: React.FC<typeof INFO.Explore[number]> = ({
+export const ActivityCard: React.FC<typeof INFO.Explore[number]> = ({
   status,
   level,
   title,
@@ -10,7 +10,7 @@ const ActivityCard: React.FC<typeof INFO.Explore[number]> = ({
   duration,
   imageUrl,
 }) => (
-  <div className="relative border border-gray-200 rounded-md overflow-hidden bg-white shadow-sm group transition-shadow hover:shadow-md hover:cursor-pointer">
+  <div className="relative border border-gray-200 rounded-md overflow-hidden bg-white shadow-sm group transition-shadow hover:shadow-md cursor-pointer">
     <div className="relative overflow-hidden">
       <img
         src={imageUrl}
@@ -41,8 +41,11 @@ const ActivityCard: React.FC<typeof INFO.Explore[number]> = ({
 );
 
 const Explore: React.FC = () => {
+  useEffect(() => {
+    window.scrollTo({top: 0, behavior: "smooth"})
+  },[])
   return (
-    <div>
+    <>
       <h1 className="text-3xl font-bold bg-white p-5">Learning English</h1>
       <div className="font-sans p-5 bg-primary-200">
         <h2 className="text-xl font-semibold mb-4">We found {INFO.Explore.length} activities for you</h2>
@@ -52,7 +55,7 @@ const Explore: React.FC = () => {
           ))}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

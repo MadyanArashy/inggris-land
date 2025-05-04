@@ -1,16 +1,18 @@
 import { Link } from "react-router-dom";
 import INFO from "../data/info.ts"
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
   return (
     <>
       {/* Hero Section */}
-      <div className="relative w-full pt-48 lg:pt-0 lg:h-110 bg-cover bg-no-repeat bg-position-[center_30%] bg-[url('/home-cover-1.png')] mb-12">
+      <div className="relative w-full pt-48 lg:pt-0 md:h-110 bg-cover bg-no-repeat bg-position-[center_30%] bg-[url('/home-cover-1.png')] mb-60 md:mb-24">
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/50 z-10"></div>
 
         {/* Text */}
-        <div className="absolute lg:top-56 lg:left-4 bg-white px-8 py-4 z-20 lg:rounded-tl-3xl lg:rounded-br-3xl flex flex-col gap-4 lg:w-md shadow-lg">
+        <div className="absolute md:top-56 md:left-4 bg-white px-8 py-4 z-20 md:rounded-tl-3xl md:rounded-br-3xl flex flex-col gap-4 md:w-md shadow-lg">
           <h1 className="text-2xl md:text-4xl font-bold text-center text-primary-900">
             Helping you learn English, step-by-step
           </h1>
@@ -35,7 +37,7 @@ const Home = () => {
 
           {/* Content Container */}
           <div
-            className={`relative z-10 flex flex-col-reverse lg:flex-row ${
+            className={`relative z-10 flex flex-col-reverse w-auto md:mx-16 sm:mx-4 lg:mx-auto lg:flex-row ${
               index % 2 === 0 ? "lg:flex-row-reverse" : ""
             } items-center justify-center bg-white rounded-tl-4xl rounded-br-4xl shadow-xl max-w-5xl mx-auto overflow-hidden`}
           >
@@ -57,7 +59,9 @@ const Home = () => {
                   <li key={i}>{item}</li>
                 ))}
               </ul>
-              <button className="bg-primary-500 text-white rounded-full px-6 py-2 text-base font-semibold transition-transform not-motion-reduce:transform hover:scale-105 hover:bg-primary-400 shadow-md hover:shadow-lg hover:shadow-primary-500 hover:cursor-pointer">
+              <button
+              onClick={() => {navigate("/explore#")}}
+              className="bg-primary-500 text-white rounded-full px-6 py-2 text-base font-semibold transition-transform not-motion-reduce:transform hover:scale-105 hover:bg-primary-400 cursor-pointer">
                 Start learning
               </button>
             </div>

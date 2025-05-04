@@ -103,7 +103,7 @@ const INFO = {
       duration: '10-15 minutes',
       imageUrl: '/explore.png',
     },
-  ]
+  ],
 }
 
 export default INFO;
