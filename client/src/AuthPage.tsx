@@ -1,47 +1,53 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export default function AuthPage() {
   const [isLogin, setIsLogin] = useState(true);
-  const [user, setUser] = useState(null);  // Define state for user (null initially)
 
   // Handle form submission (login or register)
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
     const data = Object.fromEntries(form.entries());
-
+  
     const url = isLogin
       ? "http://localhost:5000/auth/login"
       : "http://localhost:5000/auth/register";
-
+  
+    // Login request should only include email and password
+    const bodyData = isLogin
+      ? {
+          email: data.email,
+          password: data.password,
+        }
+      : {
+          username: data.username,
+          email: data.email,
+          password: data.password,
+        };
+  
     try {
       const response = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include", // Include the session cookie
-        body: JSON.stringify({
-          username: data.username,
-          email: data.email,
-          password: data.password,
-        }),
+        body: JSON.stringify(bodyData), // Send the correct fields for login or register
       });
-
+  
       const result = await response.json();
-
+  
       if (!response.ok) {
         alert(result.message || "Something went wrong");
         return;
       }
-
-      // Store user info after successful login/registration
-      setUser(result.user); // Update user state with the logged-in user's data
-
+      
+  
       alert("Success!");
     } catch (err) {
       console.error(err);
       alert("Network error");
     }
   };
+  
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">

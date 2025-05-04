@@ -2,7 +2,7 @@ import "../index.css";
 import { Link } from "react-router-dom";
 import logo from "../assets/inggrisland-logo.png";
 
-function Navbar() {
+function Navbar({session}: {session?: any}) {
   return (
   <>
     <div className="w-full bg-primary-700 fixed z-999">
@@ -28,9 +28,11 @@ function Navbar() {
           <Link to="/explore" className="text-white text-md font-bold hover:underline focus:underline">
             Explore
           </Link>
-          <span className="text-gray-400 text-md font-bold">History</span>
-          <Link to="/login" className="text-white text-md font-bold hover:underline focus:underline">
-            Login
+          <Link to="/history" className="text-gray-400 text-md font-bold pointer-events-none" tabIndex={-1}>
+            History
+          </Link>
+          <Link to={session ? "/account" : "/login"} className="text-white text-md font-bold hover:underline focus:underline">
+            {session ? "Account" : "Login"}
           </Link>
         </div>
       </div>
