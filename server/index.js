@@ -36,6 +36,18 @@ app.use(
   })
 );
 
+// Logout
+app.post('/logout', (req, res) => {
+  req.session.destroy(err => {
+    if (err) {
+      return res.status(500).json({ message: 'Logout failed' });
+    }
+    res.clearCookie('connect.sid'); // Default session cookie name
+    res.status(200).json({ message: 'Logged out successfully' });
+  });
+});
+
+
 // Routes
 app.use(UserRoute);
 app.use('/auth', authRoutes);
