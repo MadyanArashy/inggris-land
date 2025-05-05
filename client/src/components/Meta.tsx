@@ -19,7 +19,9 @@ function Meta() {
         break;
       case "/login":
         title = "Login | InggrisLand";
-        favicon = "/favicon-login.png";
+        break;
+      case "/account":
+        title = "Your Account | InggrisLand";
         break;
       default:
         title = "InggrisLand";
