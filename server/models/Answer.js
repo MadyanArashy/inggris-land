@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize';
 import db from "../config/Database.js"
-import Question from './Question'; // Import Question model
+import Question from './Question.js'; // Import Question model
 
 const Answer = db.define('Answer', {
   name: {

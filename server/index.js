@@ -7,6 +7,7 @@ import authRoutes from './routes/Auth.js';
 import groupRoutes from './routes/GroupRoutes.js';
 import questionRoutes from './routes/QuestionRoutes.js';
 import completionRoutes from './routes/CompletionRoutes.js';
+import answerRoutes from './routes/AnswerRoutes.js';
 
 const app = express();
 const PORT = 5000;
@@ -58,6 +59,7 @@ app.use('/auth', authRoutes);
 app.use('/api', groupRoutes);
 app.use('/api', questionRoutes);
 app.use('/api', completionRoutes);
+app.use('/api', answerRoutes);
 
 // Start server
 app.listen(PORT, () => console.log(`App is running on http://localhost/${PORT}`));
