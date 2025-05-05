@@ -70,3 +70,35 @@ Content-Type: application/json
   "question": "Which word is an example of simple continouous?",
   "groupId": 1
 }]
+
+###
+
+GET http://localhost:5000/api/answers/?questionId=2
+
+###
+
+POST http://localhost:5000/api/answers
+Content-Type: application/json
+
+[
+  {
+    "questionId": 2,
+    "name": "I like playing football?",
+    "true": true
+  },
+  {
+    "questionId": 2,
+    "name": "I like watching football?",
+    "true": false
+  },
+  {
+    "questionId": 2,
+    "name": "I like playing ball?",
+    "true": false
+  },
+  {
+    "questionId": 2,
+    "name": "I like football?",
+    "true": false
+  }
+]
