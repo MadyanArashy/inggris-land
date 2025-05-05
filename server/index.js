@@ -2,8 +2,11 @@ import express from 'express';
 import cors from 'cors';
 import session from 'express-session';
 import bodyParser from 'body-parser';
-import UserRoute from './routes/UserRoute.js';
+import UserRoute from './routes/UserRoutes.js';
 import authRoutes from './routes/Auth.js';
+import groupRoutes from './routes/GroupRoutes.js';
+import questionRoutes from './routes/QuestionRoutes.js';
+import completionRoutes from './routes/CompletionRoutes.js';
 
 const app = express();
 const PORT = 5000;
@@ -39,6 +42,10 @@ app.use(
 // Routes
 app.use(UserRoute);
 app.use('/auth', authRoutes);
+
+app.use('/api', groupRoutes);
+app.use('/api', questionRoutes);
+app.use('/api', completionRoutes);
 
 // Start server
 app.listen(PORT, () => console.log(`App is running on http://localhost/${PORT}`));

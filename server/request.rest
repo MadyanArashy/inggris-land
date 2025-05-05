@@ -30,3 +30,43 @@ Content-Type: application/json
 
 DELETE http://localhost:5000/users/6
 Content-Type: application/json
+
+### quiz stuff
+
+GET http://localhost:5000/api/groups
+
+###
+
+POST http://localhost:5000/api/groups
+Content-Type: application/json
+
+{
+  "name": "Prepositions used with adjectives",
+  "level": 1,
+  "description": "Find the correct preposition used with common adjectives.",
+  "duration": "0-5 mins"
+}
+
+###
+GET http://localhost:5000/api/questions/?groupId=1
+###
+
+POST http://localhost:5000/api/questions
+Content-Type: application/json
+
+[{
+  "question": "How do you say 'Apa kabar?' in English?",
+  "groupId": 1
+},
+{
+  "question": "How do you say 'Saya suka bermain futsal?' in English?",
+  "groupId": 1
+},
+{
+  "question": "What is an adjective you can use to describe a basketball?",
+  "groupId": 1
+},
+{
+  "question": "Which word is an example of simple continouous?",
+  "groupId": 1
+}]
