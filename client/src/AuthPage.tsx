@@ -1,10 +1,17 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function AuthPage({user}: {user?: any}) {
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true);
-  if(user) {navigate("/")}
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
+
+  if (user) return null; // safely skip rendering
+  
   // Handle form submission (login or register)
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -1,6 +1,6 @@
 import "./index.css";
 import Navbar from "./components/Navbar";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import Home from "./Home";
@@ -8,6 +8,8 @@ import Explore from "./Explore";
 import AuthPage from "./AuthPage";
 import Account from "./Account";
 import Meta from "./components/Meta";
+import Learn from "./Learn";
+import History from "./History";
 
 export interface User {
   id: number;
@@ -48,8 +50,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/explore" element={<Explore />} />
+          <Route path="/history" element={user ? <History user={user} /> : <Navigate to="/" />} />
           <Route path="/login" element={<AuthPage user={user}/>} />
           <Route path="/account" element={<Account user={user} />} />
+          <Route path="/learn/:id" element={<Learn user={user} />} />
         </Routes>
       </div>
     </>
