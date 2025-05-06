@@ -70,3 +70,45 @@ export const login = async (req, res) => {
     res.status(500).json({ message: 'Login failed', error: err.message });
   }
 };
+
+
+
+export const logout = (req, res) => {
+  req.session.destroy((err) => {
+    if (err) return res.status(500).json({ message: "Logout failed" });
+    res.clearCookie("connect.sid"); // Default session cookie name
+    res.json({ message: "Logged out successfully" });
+  });
+};
+
+export const updateUser = async (req, res) => {
+  if (!req.session.user) return res.status(401).json({ message: "Unauthorized" });
+
+  const { username, email, newPassword } = req.body;
+  const userId = req.session.user.id;
+
+  try {
+    const user = await User.findByPk(userId);
+
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    user.username = username;
+    user.email = email;
+
+    if (newPassword) {
+      const hashed = await bcrypt.hash(newPassword, 10);
+      user.password = hashed;
+    }
+
+    await user.save();
+
+    // Optional: update session
+    req.session.user.username = user.username;
+    req.session.user.email = user.email;
+
+    res.json({ message: "User updated", user: req.session.user });
+  } catch (err) {
+    res.status(500).json({ message: "Update failed", error: err.message });
+  }
+};
+
