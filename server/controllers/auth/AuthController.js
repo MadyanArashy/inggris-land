@@ -1,3 +1,16 @@
+import bcrypt from "bcrypt";
+import User from "../../models/User.js";
+
+export const getCurrentUser = (req, res) => {
+  // Check if there's a user in the session
+  if (!req.session.user) {
+    return res.status(401).json({ message: "Not logged in" });
+  }
+
+  // Return the user data from session
+  res.json({ user: req.session.user });
+};
+
 // In AuthController.js
 export const register = async (req, res) => {
   const { username, email, password } = req.body;
