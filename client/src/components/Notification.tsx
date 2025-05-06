@@ -2,14 +2,15 @@ import { IoAlertCircle } from "react-icons/io5";
 import { FaCheckCircle, FaSkullCrossbones } from "react-icons/fa";
 import { MdDangerous } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
+import { useState } from "react";
 
 type NotificationProps = {
   type: "alert" | "success" | "fail" | "danger";
   message?: string;
-  onClose?: () => void;
 };
 
-const Notification = ({ type, message, onClose }: NotificationProps) => {
+const Notification = ({ type, message }: NotificationProps) => {
+  const [hidden, setHidden] = useState(false);
   let logo;
   switch (type) {
     case "alert":
@@ -31,14 +32,12 @@ const Notification = ({ type, message, onClose }: NotificationProps) => {
   }
 
   return (
-    <div className="w-sm absolute z-[202] top-0 md:top-4 md:right-4 flex items-center gap-4 p-4 bg-gray-200 rounded-lg shadow-lg">
+    <div className={`${hidden ? "hidden" : "fixed"} w-md absolute z-[202] top-0 md:top-4 md:right-4 flex items-center gap-4 p-4 bg-gray-200 rounded-lg shadow-lg`}>
       {logo}
       <p className="flex-grow">{message}</p>
-      {onClose && (
-        <button onClick={onClose} className="text-gray-700 hover:text-black">
-          <IoClose size={24} />
-        </button>
-      )}
+      <button onClick={() => setHidden(true)} className="text-gray-700 hover:text-black">
+        <IoClose size={24} />
+      </button>
     </div>
   );
 };

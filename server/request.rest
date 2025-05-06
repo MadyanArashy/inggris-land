@@ -37,6 +37,28 @@ GET http://localhost:5000/api/groups
 
 ###
 
+GET http://localhost:5000/api/groups/1
+
+###
+
+PUT http://localhost:5000/api/groups/7
+Content-Type: application/json
+
+{
+  "name": "Uses of Like",
+  "level": 1,
+  "description": "This activity helps you practise using like in different sentences.",
+  "duration": "0-5 mins",
+  "imageUrl": "/explore1.png"
+}
+
+###
+
+DELETE http://localhost:5000/api/groups/6
+Content-Type: application/json
+
+###
+
 POST http://localhost:5000/api/groups
 Content-Type: application/json
 
@@ -44,7 +66,8 @@ Content-Type: application/json
   "name": "Prepositions used with adjectives",
   "level": 1,
   "description": "Find the correct preposition used with common adjectives.",
-  "duration": "0-5 mins"
+  "duration": "0-5 mins",
+  "imageUrl": "/explore1.png"
 }
 
 ###
@@ -82,23 +105,27 @@ Content-Type: application/json
 
 [
   {
-    "questionId": 2,
-    "name": "I like playing football?",
+    "questionId": 4,
+    "name": "I am baking cookies.",
     "true": true
   },
   {
-    "questionId": 2,
-    "name": "I like watching football?",
+    "questionId": 4,
+    "name": "I eat chicken.",
     "true": false
   },
   {
-    "questionId": 2,
-    "name": "I like playing ball?",
+    "questionId": 4,
+    "name": "I am cook rice.",
     "true": false
   },
   {
-    "questionId": 2,
-    "name": "I like football?",
+    "questionId": 4,
+    "name": "I make applications.",
     "true": false
   }
 ]
+
+###
+
+GET http://localhost:5000/api/completions/1

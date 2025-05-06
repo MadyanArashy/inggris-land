@@ -12,7 +12,11 @@ function Navbar({ session }: { session?: any }) {
   const navLinks = [
     { to: "/", label: "Home" },
     { to: "/explore", label: "Explore" },
-    { to: "/history", label: "History", disabled: true },
+    {
+      to: session ? `/history` : "#", // Disable link by setting it to "#" if no session
+      label: "History",
+      disabled: !session, // Disable when session is falsy
+    },
     {
       to: session ? "/account" : "/login",
       label: session ? "Account" : "Login",

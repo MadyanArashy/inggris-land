@@ -18,6 +18,17 @@ const Group = db.define('Group', {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  imageUrl: {
+    type: DataTypes.STRING,
+    allowNull: false
+  }
 });
+
+Group.associate = (models) => {
+  Group.hasMany(models.Completion, {
+    foreignKey: "groupId",
+    as: "completions",
+  });
+};
 
 export default Group;

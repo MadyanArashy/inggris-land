@@ -141,11 +141,11 @@ const Account = ({ user }: AccountProps) => {
       </form>
       {
         formStatus == "success" &&
-        <Notification type="success" message="Account successfully updated!" onClose={() => setFormStatus("idle")}/>
+        <Notification type="success" message="Account successfully updated!"/>
       }
       {
         formStatus == "error" &&
-        <Notification type="fail" message="Failure!" onClose={() => setFormStatus("idle")}/>
+        <Notification type="fail" message="Failure!"/>
       }
       {/* <Notification type="alert"/> */}
     </>

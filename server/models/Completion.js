@@ -22,6 +22,10 @@ const Completion = db.define('Completion', {
     type: DataTypes.INTEGER,
     allowNull: true,
   },
+  total: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+  }
 });
 
 export default Completion;
