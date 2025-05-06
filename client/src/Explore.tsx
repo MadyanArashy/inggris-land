@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import INFO from "../data/info.ts";
 
 export const ActivityCard: React.FC<typeof INFO.Explore[number]> = ({
-  status,
   level,
   title,
   description,
@@ -17,11 +16,6 @@ export const ActivityCard: React.FC<typeof INFO.Explore[number]> = ({
         alt={title}
         className="w-full h-auto block transform scale-100 group-hover:scale-110 transition-transform duration-350 ease-in-out"
       />
-      {status && (
-        <div className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold py-1 px-2 rounded-md z-10">
-          {status}
-        </div>
-      )}
     </div>
     <div className="bg-teal-500 text-white p-4 flex items-center justify-between">
       <div>
