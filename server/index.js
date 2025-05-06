@@ -62,4 +62,4 @@ app.use('/api', completionRoutes);
 app.use('/api', answerRoutes);
 
 // Start server
-app.listen(PORT, () => console.log(`App is running on http://localhost/${PORT}`));
+app.listen(PORT, () => console.log(`App is running on http://localhost:${PORT}`));
