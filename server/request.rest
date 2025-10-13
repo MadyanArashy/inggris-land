@@ -71,7 +71,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:5000/api/questions/?groupId=1
+GET http://localhost:5000/api/questions/?groupId=7
 ###
 
 POST http://localhost:5000/api/questions
@@ -79,19 +79,19 @@ Content-Type: application/json
 
 [{
   "question": "How do you say 'Apa kabar?' in English?",
-  "groupId": 1
+  "groupId": 7
 },
 {
   "question": "How do you say 'Saya suka bermain futsal?' in English?",
-  "groupId": 1
+  "groupId": 7
 },
 {
   "question": "What is an adjective you can use to describe a basketball?",
-  "groupId": 1
+  "groupId": 7
 },
 {
   "question": "Which word is an example of simple continouous?",
-  "groupId": 1
+  "groupId": 7
 }]
 
 ###
@@ -107,7 +107,7 @@ Content-Type: application/json
   {
     "questionId": 4,
     "name": "I am baking cookies.",
-    "true": true
+    "true": false
   },
   {
     "questionId": 4,
