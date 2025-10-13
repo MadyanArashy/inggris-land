@@ -89,20 +89,6 @@ const Learn = ({ user }: LearnProps) => {
     }
   }, [group]);
 
-  useEffect(() => {
-    if (isCompleted && user && group) {
-      const correct = userAnswers.filter(ans => ans).length;
-      const total = userAnswers.length;
-  
-      axios.post("http://localhost:5000/api/completions", {
-        userId: user.id,
-        groupId: group.id,
-        score: correct,
-        total: total,
-      }).catch(err => console.error("Failed to save completion", err));
-    }
-  }, [isCompleted]);
-
   const handleAnswerClick = (answer: Answer) => {
     if (isCompleted || hasSavedRef.current) return;
   

@@ -12,7 +12,7 @@ export interface Completion {
   score: number;
   total: number;
   createdAt: string;
-  groupName?: string; // Add groupName to Completion interface
+  groupName?: string;
 }
 
 export interface HistoryProps {
@@ -37,6 +37,7 @@ const History = ({ user }: HistoryProps) => {
         // Fetch completions for the logged-in user using user.id
         const res = await axios.get(`http://localhost:5000/api/completions/${user.id}`);
         const completionData = res.data;
+        console.log(completionData);
 
         // Fetch group name for each completion
         const completionsWithGroupName = await Promise.all(completionData.map(async (completion: Completion) => {
@@ -69,13 +70,18 @@ const History = ({ user }: HistoryProps) => {
     <div className="max-w-screen-lg mx-auto p-4">
       <h1 className="text-3xl font-semibold mb-6">Your Completion History</h1>
       <ul className="space-y-4">
-        {completions.map((completion) => (
-          <li key={completion.groupId} className="bg-white p-4 rounded-lg shadow-md">
+        {completions.map((completion, index) => (
+          <li
+            key={`${completion.groupId}-${index}`}
+            className="bg-white p-4 rounded-lg shadow-md"
+          >
             <div className="text-xl font-semibold">{completion.groupName}</div>
             <div className="text-gray-600">
               Score: {completion.score}/{completion.total}
             </div>
-            <div className="text-gray-400">Completed on: {new Date(completion.createdAt).toLocaleDateString()}</div>
+            <div className="text-gray-400">
+              Completed on: {new Date(completion.createdAt).toLocaleDateString()}
+            </div>
           </li>
         ))}
       </ul>

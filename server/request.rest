@@ -10,9 +10,9 @@ POST http://localhost:5000/users
 Content-Type: application/json
 
 {
-  "name": "Evelyn Tucni",
-  "email": "evelyn@yahoo.com",
-  "password": "petdog123#"
+  "name": "Madyan",
+  "email": "madyan@gmail.com",
+  "password": "12345678"
 }
 
 ###
