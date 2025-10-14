@@ -96,7 +96,7 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:5000/api/answers/?questionId=2
+GET http://localhost:5000/api/answers/?questionId=7
 
 ###
 
@@ -105,14 +105,74 @@ Content-Type: application/json
 
 [
   {
-    "questionId": 4,
+    "questionId": 1,
+    "name": "I am baking cookies.",
+    "true": true
+  },
+  {
+    "questionId": 1,
+    "name": "I eat chicken.",
+    "true": false
+  },
+  {
+    "questionId": 1,
+    "name": "I am cook rice.",
+    "true": false
+  },
+  {
+    "questionId": 1,
+    "name": "I make applications.",
+    "true": false
+  },
+  {
+    "questionId": 2,
     "name": "I am baking cookies.",
     "true": false
+  },
+  {
+    "questionId": 2,
+    "name": "I eat chicken.",
+    "true": true
+  },
+  {
+    "questionId": 2,
+    "name": "I am cook rice.",
+    "true": false
+  },
+  {
+    "questionId": 2,
+    "name": "I make applications.",
+    "true": false
+  },
+  {
+    "questionId": 3,
+    "name": "I am baking cookies.",
+    "true": false
+  },
+  {
+    "questionId": 3,
+    "name": "I eat chicken.",
+    "true": false
+  },
+  {
+    "questionId": 3,
+    "name": "I am cook rice.",
+    "true": false
+  },
+  {
+    "questionId": 3,
+    "name": "I make applications.",
+    "true": true
   },
   {
     "questionId": 4,
     "name": "I eat chicken.",
     "true": false
+  },
+  {
+    "questionId": 4,
+    "name": "I am baking cookies.",
+    "true": true
   },
   {
     "questionId": 4,
